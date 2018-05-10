@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Brendan Innis
 tagline:          'Brendan Innis software developer'
-description:      'Software developer and blogger'
+description:      "App developer. I write about what I've learned, projects I'm working on and the Pacific coast lifestyle"
 url:              http://brendaninnis.ca
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
