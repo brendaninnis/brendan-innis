@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello World
-description: I deployed my Jekyll-powered blog to GitHub pages.
+description: I deployed my Jekyll powered blog to GitHub pages on brendaninnis.ca.
 permalink: /hello-world.html
 tags: [ life, web ]
 excerpt_separator:  <!--more-->
