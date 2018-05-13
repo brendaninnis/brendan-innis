@@ -2,6 +2,7 @@
 layout: post
 title: "Build a static site with Jekyll"
 description: "Learn how to build and host an awesome static site using Jekyll and GitHub Pages."
+permalink: /build-a-jekyll-site.html
 categories:
   - Web
 tags:
