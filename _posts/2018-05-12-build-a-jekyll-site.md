@@ -136,6 +136,6 @@ In the DNS settings for my domain I added `A` records with the following ip addr
 
 ## Done
 
-Actually you are far from done. You will want to give your site a great title and description, edit or add some pages and maybe write a post or two. I also added Disqus and Google Analytics to my site right away by added a few lines to `_config.yml`. The source for this site is available on my [GitHub profile](https://github.com/brendaninnis?tab=repositories).
+Actually you are far from done. You will want to give your site a great title and description, edit or add some pages and maybe write a post or two. I also added Disqus and Google Analytics to my site right away by adding a few lines to `_config.yml`. The source for this site is available on my [GitHub profile](https://github.com/brendaninnis?tab=repositories).
 
 I'm also happy to answer any questions about how I built this website in the comments below or on my [Twitter](https://twitter.com/InnisBrendan).
