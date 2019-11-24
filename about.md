@@ -4,7 +4,7 @@ title: About
 sidebar_link: true
 ---
 
-![brendan](https://pbs.twimg.com/profile_images/992172391366250496/iHyo05AS_200x200.jpg "Brendan Innis")
+![brendan](https://avatars2.githubusercontent.com/u/39076637?s=460&v=4 "Brendan Innis")
 
 I am a mobile developer at Whole Punk Creators in Victoria BC.
 
