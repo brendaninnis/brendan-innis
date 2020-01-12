@@ -44,8 +44,8 @@ Then, when we want to start hosting, we'll initialize a server socket. Passing `
 // Create a listen socket
 val port: Int
 serverSocket = ServerSocket(0).also { socket ->
-// Store the chosen port.
-port = socket.localPort
+    // Store the chosen port.
+    port = socket.localPort
 }
 ```
 
@@ -83,7 +83,6 @@ We are using `CopyOnWriteArrayList` to ensure the thread safety of mutations on 
 Now we have a server socket that is accepting connections and keeping track of it's clients. In order for our clients to discover the server and connect, they need to know the ip address and port number of the host device. We can publish and discover our service over the network using [NSD](https://developer.android.com/training/connect-devices-wirelessly/nsd).
 
 ## Using Android Network Service Discovery
-q
 
 As the host device, we will be publishing a service over the network that client devices will be able to discover.
 First we need an instance of `NsdManager` which we will lazy load as a field on our activity.
