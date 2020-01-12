@@ -14,7 +14,7 @@ tags:
 
 This post will show you how to create an Android app that can run on multiple nearby devices and connect them via a local network. This is part 2 of a larger tutorial that will explain how you can connect an app to other instances of the same app running on multiple devices and platforms.
 
-In [part 1](brendaninnis.ca/connect-nearby-devices-part-1.html) of this tutorial we built an iOS app that can connect to other instances of the same app. In this part we will build an Android app that can connect and share data between other instances of the same Android app, and the iOS app from part 1.
+In [part 1](connect-nearby-devices-part-1.html) of this tutorial we built an iOS app that can connect to other instances of the same app. In this part we will build an Android app that can connect and share data between other instances of the same Android app, and the iOS app from part 1.
 
 ## Example Local Networking App
 
@@ -401,6 +401,6 @@ if (host) {
 
 This should be all you need to get started connecting multiple devices running the same app over the local network and sending messages back and forth. For a complete example of an app doing this, you can see my example [messaging app](https://github.com/brendaninnis/LocalNetworkingAndroidApp).
 
-You can see part 1 of this tutorial series to build an iOS app that can connect to this one [here](http://brendaninnis.ca/connect-nearby-devices-part-1.html).
+You can see part 1 of this tutorial series to build an iOS app that can connect to this one [here](connect-nearby-devices-part-1.html).
 
 In future parts of this series I will explain how to accomplish the same thing using Bluetooth communication. If there's anything I didn't explain or anything else you want to know, I'd love it if you left a comment.
