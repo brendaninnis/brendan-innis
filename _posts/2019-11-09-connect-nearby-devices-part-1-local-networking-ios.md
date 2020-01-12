@@ -1,12 +1,13 @@
 ---
 layout: post
 title: "Connect Nearby Devices Part 1: Local Networking iOS"
-description: "Learn to build an app that connects nearby devices over a local network."
+description: "Learn to build an iOS app that connects nearby devices over a local network."
 permalink: /connect-nearby-devices-part-1.html
 categories:
   - Mobile
 tags:
   - iOS
+  - Swift
   - Networking
   - Nearby Devices
 ---
@@ -19,9 +20,11 @@ The first part of this seriers will teach you to build an iOS app that can conne
 
 I built an iOS app that can join a realtime messaging chat with any other devices on the same local network. The first person who joins the chat will become the host and other people running the app that join the chat will be connected to the host. Everyone will be assinged a random name after a character from the Belgariad. You can follow along with this tutorial and build you own app, or you can also download the repository of the finished app here: [Finished Example](https://github.com/brendaninnis/LocalNetworkingApp). 
 
+## Connecting devices over a local network
+
 There are 2 parts to building this app, discovery and connection. 
 
-Discovery means we need devices running the same app to be able to see each other so that they can connect. For discovery we can use [Bonjour](https://developer.apple.com/bonjour/), an open source technology which allows a device to publish and listen for "services" running on the same network. We can then get the ip address and port of the host device in order that we can connect. 
+Discovery means we need devices running the same app to be able to see each other so that they can connect. For discovery we can use [Bonjour](https://developer.apple.com/bonjour/), an open source technology which allows a device to publish and listen for services running on the same network. We can then get the ip address and port of the host device in order that we can connect. 
 
 For connection we can use TCP/IP sockets to connect our devices and pass messages back and forth. The library I chose to use for this is called [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket).
 
@@ -35,7 +38,7 @@ use_frameworks! # Add this if you are targeting iOS 8+ or using Swift
 pod 'CocoaAsyncSocket'  
 ```
 
-The class we are going to be using from CocoaAsyncSocket is called GCDAsyncSocket. It is a thread-safe TCP/IP socket that runs entirely within it's own GCD queue and uses a delegate pattern to execute callbacks on the queue you supplied. Sockets are used to connect two devices over a network so that they can exchange messages. If any of this is sounding new or unfamiliar to you I highly recommend reading the [CoacoaAsyncPods wiki](https://github.com/robbiehanson/CocoaAsyncSocket/wiki).
+The class we are going to be using from CocoaAsyncSocket is called GCDAsyncSocket. It is a thread-safe TCP/IP socket that runs entirely within it's own [GCD](https://developer.apple.com/documentation/DISPATCH) queue and uses a delegate pattern to execute callbacks on the queue you supplied. Sockets are used to connect two devices over a network so that they can exchange messages. If any of this is sounding new or unfamiliar to you I highly recommend reading the [CoacoaAsyncPods wiki](https://github.com/robbiehanson/CocoaAsyncSocket/wiki).
 The wiki does an excellent job introducing networking concepts and reading and writing using the [GCDAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket/wiki/Intro_GCDAsyncSocket) library. 
 
 ## Hosting
@@ -95,11 +98,11 @@ func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
 
 That covers the basic lifecycle of creating a socket to accept connections, and getting connected client sockets to read and write messages, but there is one more thing the host needs to do. 
 
-In order for clients to connect, they need to know the ip address and port number of the host device. We can publish and discover our "service" over the network using [Bonjour](https://developer.apple.com/bonjour/), also known as zero-configuration networking.
+In order for clients to connect, they need to know the ip address and port number of the host device. We can publish and discover our service over the network using [Bonjour](https://developer.apple.com/bonjour/), also known as zero-configuration networking.
 
 ## NetService
 
-As the host device, we will be publishing a "service" over the network that client devices will be able to discover. We need to use the [NetService](https://developer.apple.com/documentation/foundation/netservice) class to accomplish this. First, create a new view controller property to reference an instance of `NetService`.
+As the host device, we will be publishing a service over the network that client devices will be able to discover. We need to use the [NetService](https://developer.apple.com/documentation/foundation/netservice) class to accomplish this. First, create a new view controller property to reference an instance of `NetService`.
 
 ```swift
 var netService: NetService?
@@ -109,7 +112,7 @@ Once we have created a socket and are accepting connections, we'll publish our s
 
 ```swift
 // Publish a NetService
-netService = NetService(domain: "local.", type: "_LocalNetworkingApp._tcp.", name: "Host Device", port: Int32(port))
+netService = NetService(domain: "local.", type: "_LocalNetworkingApp._tcp.", name: "LocalNetworkingApp", port: Int32(port))
 netService?.delegate = self
 netService?.publish()
 ```
@@ -311,7 +314,7 @@ Of course this `Data` could contain JSON strings, images or anything else you wa
 
 ## Finishing Up
 
-When we want to end the connection from the host or stop hosing we should do some cleanup.
+When we want to end the connection from the host or stop hosting we should do some cleanup.
 
 ```swift
 if host {
@@ -337,6 +340,10 @@ if host {
 }
 ```
 
+## Done
+
 There are a few more details to pay attention to, but the above should cover the essentials of how to connect multiple devices running the same app over the local network and send messages back and forth. For a complete example of an app doing this, you can see my example [messaging app](https://github.com/brendaninnis/LocalNetworkingApp).
 
-In future parts of this series I will explain how to accomplish the same thing on Android, and later use Bluetooth to accomplish the same thing on both platforms. If there's anything I didn't explain or anything else you want to know, I'd love it if you left a comment.
+Part 2 of this tutorial series shows how to build an Android app that can connect to this one, which can be found [here](http://brendaninnis.ca/connect-nearby-devices-part-2.html)
+
+In future parts of this series I will explain how to accomplish the same thing using Bluetooth communication. If there's anything I didn't explain or anything else you want to know, I'd love it if you left a comment.
